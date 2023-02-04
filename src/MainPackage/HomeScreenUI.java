@@ -1,3 +1,7 @@
+/**
+ *
+ */
+
 package MainPackage;
 
 import javafx.geometry.Insets;
@@ -7,18 +11,17 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class HomeScreen {
+public class HomeScreenUI {
 
     private final Stage primaryStage;
 
-    public HomeScreen(Stage primaryStage) {
+    public HomeScreenUI(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        showHomeScreen();
+        createHomeScreen();
 
     }
 
-
-    private void showHomeScreen() {
+    private void createHomeScreen() {
 
         GridPane root = new GridPane();
         root.setMinSize(400, 200);

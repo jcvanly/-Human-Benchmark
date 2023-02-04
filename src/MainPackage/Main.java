@@ -1,14 +1,18 @@
+/**
+ *
+ */
+
 package MainPackage;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        new HomeScreen(primaryStage);
+    public void start(Stage primaryStage) {
+        new UserNameUI(primaryStage);
+        new HomeScreenUI(primaryStage);
     }
 
-
 }
+
