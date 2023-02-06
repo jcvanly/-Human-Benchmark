@@ -4,6 +4,9 @@
 
 package MainPackage;
 
+import Games.ReactionTime;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,9 +17,11 @@ import javafx.stage.Stage;
 public class HomeScreenUI {
 
     private final Stage primaryStage;
+    private final GameUtility gameUtil;
 
-    public HomeScreenUI(Stage primaryStage) {
+    public HomeScreenUI(Stage primaryStage, GameUtility gameUtil) {
         this.primaryStage = primaryStage;
+        this.gameUtil = gameUtil;
         createHomeScreen();
 
     }
@@ -33,6 +38,12 @@ public class HomeScreenUI {
         Button reactionTimeButton = new Button("Reaction Time");
         reactionTimeButton.setPrefSize(150, 100);
         root.add(reactionTimeButton, 0, 0);
+        reactionTimeButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                new ReactionTime(gameUtil , primaryStage);            }
+        });
 
         Button sequenceMemoryButton = new Button("Sequence Memory");
         sequenceMemoryButton.setPrefSize(150, 100);
