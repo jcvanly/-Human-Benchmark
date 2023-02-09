@@ -2,7 +2,6 @@
  *
  */
 
-
 package MainPackage;
 
 import javafx.event.ActionEvent;

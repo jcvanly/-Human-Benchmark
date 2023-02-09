@@ -8,7 +8,6 @@ import MainPackage.GameUtility;
 import MainPackage.HomeScreenUI;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -26,7 +25,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ReactionTime {
     private final GameUtility gameUtility;
@@ -68,9 +66,23 @@ public class ReactionTime {
             }
         });
 
+        Button saveButton = new Button("Save Score");
+        saveButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(currentState == 1) {
+                    ReactionTime.this.gameUtility.updateReactionTime
+                            (score.get());
+                    new ReactionTime(ReactionTime.this.gameUtility, primaryStage);
+                }
+            }
+        });
+
+
+
         HBox topBox= new HBox();
         topBox.setSpacing(20);
-        topBox.getChildren().addAll(backButton);
+        topBox.getChildren().addAll(backButton, saveButton);
 
         root.setTop(topBox);
         Insets insets = new Insets(10);
@@ -82,7 +94,9 @@ public class ReactionTime {
             public void handle(MouseEvent event) {
 
                 final KeyFrame clickScene = new KeyFrame(Duration.millis(5000), e ->{ hBox.setBackground(new Background(new BackgroundFill(Color.web("#6AC46A"), CornerRadii.EMPTY, Insets.EMPTY)));
-                    currentState = 3;
+
+
+                        currentState = 3;
                     text.set("Click!");
                     start.set(System.currentTimeMillis());
                 });
@@ -101,7 +115,7 @@ public class ReactionTime {
                     text.set("Too soon, click to try again!");
                     hBox.setBackground(new Background(new BackgroundFill (Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
                     timeline.stop();
-
+                    currentState = 1;
 
                 }
 
@@ -110,7 +124,6 @@ public class ReactionTime {
                     long end = System.currentTimeMillis();
                     score.set(end - start.get());
                     System.out.println("Score:" + counter.get());
-
 
                         text.set("You replied in " + score.get() +
                                 " ms, click to try again");
