@@ -6,17 +6,12 @@ package MainPackage;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import java.io.FileNotFoundException;
 
 public class Main extends Application {
-
-    private String userName;
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException {
         new UserNameUI(primaryStage);
-        GameUtility controller = new GameUtility(userName);
-
-        new HomeScreenUI(primaryStage, controller);
     }
-
 }
 

@@ -25,6 +25,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 
 public class ReactionTime {
     private final GameUtility gameUtility;
@@ -70,11 +72,16 @@ public class ReactionTime {
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(currentState == 1) {
-                    ReactionTime.this.gameUtility.updateReactionTime
-                            (score.get());
-                    new ReactionTime(ReactionTime.this.gameUtility, primaryStage);
-                }
+
+                    try {
+                        ReactionTime.this.gameUtility.updateReactionTime(score.get());
+                    }
+
+                    catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //new ReactionTime(ReactionTime.this.gameUtility, primaryStage);
+
             }
         });
 
@@ -113,7 +120,7 @@ public class ReactionTime {
 
                 else  if (currentState == 2) {
                     text.set("Too soon, click to try again!");
-                    hBox.setBackground(new Background(new BackgroundFill (Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
+                    hBox.setBackground(new Background (new BackgroundFill (Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
                     timeline.stop();
                     currentState = 1;
 
@@ -126,7 +133,8 @@ public class ReactionTime {
                     System.out.println("Score:" + counter.get());
 
                         text.set("You replied in " + score.get() +
-                                " ms, click to try again");
+                                " ms \n save your score then" +
+                                "\n     click to try again");
                         hBox.setBackground(new Background(new BackgroundFill (Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
                         currentState = 1;
                 }

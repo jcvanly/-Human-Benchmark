@@ -11,7 +11,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.application.Platform;
@@ -21,6 +25,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 
+import java.io.FileNotFoundException;
 
 
 public class UserNameUI {
@@ -28,10 +33,11 @@ public class UserNameUI {
     private final Stage parentStage;
     private String userName;
 
-    public UserNameUI(Stage primaryStage) {
+    public UserNameUI(Stage primaryStage) throws FileNotFoundException {
         this.parentStage = primaryStage;
         getUserName();
-
+        GameUtility controller = new GameUtility(userName);
+        new HomeScreenUI(primaryStage, controller);
     }
 
     private void getUserName() {
@@ -43,9 +49,15 @@ public class UserNameUI {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
+        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#008AD8"), null, null);
+        Background background = new Background(backgroundFill);
+        gridPane.setBackground(background);
         Label label = new Label("Name: ");
+        label.setFont(new Font("Segoe UI", 16));
         TextField userNameField=new TextField();
         Button submitButton = new Button("Play!");
+        submitButton.setStyle("-fx-background-color: white;");
+
 
         HBox hBox = new HBox();
         hBox.setSpacing(10);
@@ -77,7 +89,6 @@ public class UserNameUI {
 
         userNameDialogue.setScene(new Scene(gridPane, 400, 100));
         userNameDialogue.showAndWait();
-
     }
 
     private void checkUserName(TextField userNameField, Stage dialog) {
@@ -85,6 +96,7 @@ public class UserNameUI {
         userName = userNameField.getText();
 
         if(userName != null && !userName.isEmpty()) {
+
             dialog.close();
         }
 

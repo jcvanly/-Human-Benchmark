@@ -11,7 +11,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class HomeScreenUI {
@@ -33,11 +36,16 @@ public class HomeScreenUI {
         root.setPadding(new Insets(30, 10, 10, 10));
         root.setVgap(20);
         root.setHgap(20);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#008AD8"), null, null);
+        Background background = new Background(backgroundFill);
+        root.setBackground(background);
         root.setAlignment(Pos.TOP_CENTER);
+
 
         Button reactionTimeButton = new Button("Reaction Time");
         reactionTimeButton.setPrefSize(150, 100);
         root.add(reactionTimeButton, 0, 0);
+        reactionTimeButton.setStyle("-fx-background-color: white;");
         reactionTimeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -48,34 +56,50 @@ public class HomeScreenUI {
         Button sequenceMemoryButton = new Button("Sequence Memory");
         sequenceMemoryButton.setPrefSize(150, 100);
         root.add(sequenceMemoryButton, 1, 0);
+        sequenceMemoryButton.setStyle("-fx-background-color: white;");
+
 
         Button aimTrainerButton = new Button("Aim Trainer");
         aimTrainerButton.setPrefSize(150, 100);
         root.add(aimTrainerButton, 2, 0);
+        aimTrainerButton.setStyle("-fx-background-color: white;");
+
 
         Button chimpTestButton = new Button("Chimp Test");
         chimpTestButton.setPrefSize(150, 100);
         root.add(chimpTestButton, 0, 1);
+        chimpTestButton.setStyle("-fx-background-color: white;");
+
 
         Button visualMemoryButton = new Button("Visual Memory");
         visualMemoryButton.setPrefSize(150, 100);
         root.add(visualMemoryButton, 1, 1);
+        visualMemoryButton.setStyle("-fx-background-color: white;");
+
 
         Button typingButton = new Button("Typing");
         typingButton.setPrefSize(150, 100);
         root.add(typingButton, 2, 1);
+        typingButton.setStyle("-fx-background-color: white;");
+
 
         Button numberMemoryButton = new Button("Number Memory");
         numberMemoryButton.setPrefSize(150, 100);
         root.add(numberMemoryButton, 0, 2);
+        numberMemoryButton.setStyle("-fx-background-color: white;");
+
 
         Button verbalMemoryButton = new Button("Verbal Memory");
         verbalMemoryButton.setPrefSize(150, 100);
         root.add(verbalMemoryButton, 1, 2);
+        verbalMemoryButton.setStyle("-fx-background-color: white;");
+
 
         Button myGameButton = new Button("My Game");
         myGameButton.setPrefSize(150, 100);
         root.add(myGameButton, 2, 2);
+        myGameButton.setStyle("-fx-background-color: white;");
+
 
         primaryStage.setTitle("Human Benchmark");
         primaryStage.setScene(new Scene(root, 600, 400));

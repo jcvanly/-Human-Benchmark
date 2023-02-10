@@ -6,8 +6,7 @@ package MainPackage;
 
 public class UserData {
     private String name;
-    private long reactionTime, sequenceMemory, aimTrainer, chimpTest,
-            visualMemory, typing, numberMemory, verbalMemory;
+    private long reactionTime;
 
     public String getName() {
         return name;
@@ -18,7 +17,6 @@ public class UserData {
     }
 
     public void setReactionTime(long reactionTime) {
-
         this.reactionTime = reactionTime;
     }
 
@@ -26,4 +24,5 @@ public class UserData {
     public String toString() {
         return name + "," + reactionTime;
     }
+
 }
