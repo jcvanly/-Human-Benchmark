@@ -49,7 +49,7 @@ public class UserNameUI {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
-        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#008AD8"), null, null);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#e7ecfb"), null, null);
         Background background = new Background(backgroundFill);
         gridPane.setBackground(background);
         Label label = new Label("Name: ");

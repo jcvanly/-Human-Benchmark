@@ -21,12 +21,6 @@ public class GameUtility {
         userDataList = new ArrayList<>();
         loadCsv();
 
-//        for (UserData u : userDataList ) {
-//                currentUserData = u;
-//                break;
-//
-//        }
-
         if(currentUserData == null) {
             currentUserData = new UserData();
             currentUserData.setName(userName);
@@ -63,6 +57,21 @@ public class GameUtility {
 
     public void updateReactionTime(long score) throws IOException {
         this.currentUserData.setReactionTime(score);
+        saveCSV();
+    }
+
+    public void updateSequenceMemory(long score) throws IOException {
+        this.currentUserData.setSequenceMemory(score);
+        saveCSV();
+    }
+
+    public void updateAimTrainer(long score) throws IOException {
+        this.currentUserData.setAimTrainer(score);
+        saveCSV();
+    }
+
+    public void updateChimpTest(long score) throws IOException {
+        this.currentUserData.setChimpTest(score);
         saveCSV();
     }
 

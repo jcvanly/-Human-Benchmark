@@ -4,7 +4,10 @@
 
 package MainPackage;
 
+import Games.AimTrainer;
+import Games.ChimpTest;
 import Games.ReactionTime;
+import Games.SequenceMemory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -57,19 +60,36 @@ public class HomeScreenUI {
         sequenceMemoryButton.setPrefSize(150, 100);
         root.add(sequenceMemoryButton, 1, 0);
         sequenceMemoryButton.setStyle("-fx-background-color: white;");
+        sequenceMemoryButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                new SequenceMemory(gameUtil , primaryStage);            }
+        });
 
 
         Button aimTrainerButton = new Button("Aim Trainer");
         aimTrainerButton.setPrefSize(150, 100);
         root.add(aimTrainerButton, 2, 0);
         aimTrainerButton.setStyle("-fx-background-color: white;");
+        aimTrainerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                new AimTrainer(gameUtil , primaryStage);            }
+        });
 
 
         Button chimpTestButton = new Button("Chimp Test");
         chimpTestButton.setPrefSize(150, 100);
         root.add(chimpTestButton, 0, 1);
         chimpTestButton.setStyle("-fx-background-color: white;");
+        chimpTestButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
 
+                new ChimpTest(gameUtil , primaryStage);            }
+        });
 
         Button visualMemoryButton = new Button("Visual Memory");
         visualMemoryButton.setPrefSize(150, 100);

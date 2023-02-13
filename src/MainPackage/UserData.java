@@ -6,7 +6,7 @@ package MainPackage;
 
 public class UserData {
     private String name;
-    private long reactionTime;
+    private long reactionTime, sequenceMemory, aimTrainer;
 
     public String getName() {
         return name;
@@ -20,9 +20,21 @@ public class UserData {
         this.reactionTime = reactionTime;
     }
 
+    public void setSequenceMemory(long SequenceMemory) {
+        this.sequenceMemory = SequenceMemory;
+    }
+
+    public void setAimTrainer(long aimTrainer) {
+        this.aimTrainer = aimTrainer;
+    }
+
+    public void setChimpTest(long aimTrainer) {
+        this.aimTrainer = aimTrainer;
+    }
+
     @Override
     public String toString() {
-        return name + "," + reactionTime;
+        return name + "," + reactionTime + "," + sequenceMemory + "," + aimTrainer;
     }
 
 }
