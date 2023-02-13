@@ -91,7 +91,7 @@ public class SequenceMemory {
         root.setBottom(bottomBtnBox);
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setPadding(insets);
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setScene(new Scene(root, 600, 400));
 
         SimpleIntegerProperty num = new SimpleIntegerProperty();
         num.set(1);

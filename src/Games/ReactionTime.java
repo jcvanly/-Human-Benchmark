@@ -134,7 +134,7 @@ public class ReactionTime {
 
                         text.set("You replied in " + score.get() +
                                 " ms \n save your score then" +
-                                "\n     click to try again");
+                                "\n    click to try again");
                         hBox.setBackground(new Background(new BackgroundFill (Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
                         currentState = 1;
                 }

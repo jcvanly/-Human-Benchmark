@@ -30,7 +30,7 @@ public class GameUtility {
     private void loadCsv() throws FileNotFoundException {
         File file = new File("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\scores.csv");
         Scanner sc = new Scanner(file);
-        sc.nextLine();
+        //sc.nextLine();
 
         while (sc.hasNext()) {
             String line = sc.nextLine();
@@ -75,20 +75,18 @@ public class GameUtility {
         saveCSV();
     }
 
+    public void updateVisualMemory(long score) throws IOException {
+        this.currentUserData.setVisualMemory(score);
+        saveCSV();
+    }
+
     private void saveCSV() throws IOException {
         File file = new File("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\scores.csv");
         BufferedWriter bw = null;
 
         try {
             bw=new BufferedWriter(new FileWriter(file));
-            bw.write("name, reaction_time\n");
-
             bw.write(currentUserData.toString());
-
-//            for (UserData u : userDataList) {
-//                bw.write(u.toString());
-//                bw.newLine();
-//            }
 
         }
 
@@ -112,3 +110,4 @@ public class GameUtility {
 
 
 }
+
