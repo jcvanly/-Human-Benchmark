@@ -4,10 +4,7 @@
 
 package MainPackage;
 
-import Games.AimTrainer;
-import Games.ChimpTest;
-import Games.ReactionTime;
-import Games.SequenceMemory;
+import Games.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -95,6 +92,12 @@ public class HomeScreenUI {
         visualMemoryButton.setPrefSize(150, 100);
         root.add(visualMemoryButton, 1, 1);
         visualMemoryButton.setStyle("-fx-background-color: white;");
+        visualMemoryButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                new VisualMemory(gameUtil , primaryStage);            }
+        });
 
 
         Button typingButton = new Button("Typing");
