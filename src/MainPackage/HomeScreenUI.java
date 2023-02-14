@@ -223,7 +223,7 @@ public class HomeScreenUI {
         myGameButton.setPrefSize(150, 100);
         root.add(myGameButton, 2, 2);
         myGameButton.setStyle("-fx-background-color: white;");
-        Image image9 = new Image("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\verbalMemory.png");
+        Image image9 = new Image("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\numberMemory.png");
         ImageView imageView9 = new ImageView(image9);
         imageView9.setFitHeight(75);
         imageView9.setFitWidth(100);
@@ -233,6 +233,12 @@ public class HomeScreenUI {
         vBox9.getChildren().addAll(imageView9, label9);
         vBox9.setAlignment(Pos.CENTER);
         myGameButton.setGraphic(vBox9);
+        myGameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                new MyGame(gameUtil , primaryStage);            }
+        });
 
 
         primaryStage.setTitle("Human Benchmark");

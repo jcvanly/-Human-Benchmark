@@ -101,39 +101,33 @@ public class ChimpTest{
                 Button button = new Button(Integer.toString(keyValues.size()));
                 button.setTextFill(Color.WHITE);
                 button.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
-                button.setStyle("-fx-border-color: #95C3E8; -fx-border-width: 2px; -fx-border-style: solid;");
-                button.setMinSize(35, 35);
-                button.setMaxSize(35, 35);
+                button.setStyle("-fx-border-color: #91b6d4; -fx-border-width: 2px; -fx-border-style: solid;");
                 button.setPrefSize(35, 35);
                 button.setOnAction(event -> {
                     Platform.runLater(() -> {
                         int val = Integer.parseInt(button.getText());
                         if (val - 1 == counter.get()) {
-
-                            //numberOfButtons.set(numberOfButtons.get() - 1);
-                            //centerBox.getChildren().remove(button);
+                            numberOfButtons.set(numberOfButtons.get() - 1);
+                            centerBox.getChildren().remove(button);
                             button.setVisible(false);
+                            button.setManaged(false);
                             if (level.get() != 1) {
-                                //centerBox.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> node.setStyle("-fx-text-fill: white"));
-                                centerBox.getChildren().stream()
-                                        .filter(node -> node instanceof Button)
-                                        .forEach(node -> node.setStyle("-fx-text-fill: white; -fx-background-color: white;"));                            }
+                                centerBox.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> node.setStyle("-fx-text-fill: white"));
+                                centerBox.getChildren().stream().filter(node -> node instanceof Button)
+                                        .forEach(node -> node.setStyle("-fx-text-fill: white; -fx-background-color: white;"));
+                            }
                             counter.set(counter.get() + 1);
-                        }
-
-                        else {
+                            numberOfButtons.set(keyValues.size());
+                        } else {
                             lives.set(lives.get() - 1);
                             livesLabel.setText("Lives:" + lives.get());
                             level.set(level.get() + 1);
                             levelLabel.setText("Level:" + level.get());
                         }
-
                         if (lives.get() == 0) {
                             root.setCenter(livesLabel);
                             bottomBtnBox.setVisible(true);
-                        }
-
-                        else if (centerBox.getChildren().isEmpty()) {
+                        } else if (centerBox.getChildren().isEmpty()) {
                             level.set(level.get() + 1);
                             levelLabel.setText("Level:" + level.get());
                             numberOfButtons.set(numberOfButtons.get() + 1);
