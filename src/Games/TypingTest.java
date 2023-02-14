@@ -53,8 +53,9 @@ public class TypingTest {
         SimpleLongProperty time = new SimpleLongProperty();
 
         HBox bottomBtnBox = new HBox();
-        Button saveScoreBtn = new Button("Save Score");
-        saveScoreBtn.setOnAction(event -> {
+        Button saveScoreButton = new Button("Save Score");
+        saveScoreButton.setStyle("-fx-background-color: #ffb347;");
+        saveScoreButton.setOnAction(event -> {
             try {
                 gameUtility.updateTypingTest(time.get());
             } catch (IOException e) {
@@ -63,11 +64,12 @@ public class TypingTest {
             new TypingTest(TypingTest.this.gameUtility, primaryStage);
         });
 
-        Button tryAgainBtn = new Button("Try Again");
-        tryAgainBtn.setOnAction(event -> {
+        Button tryAgainButton = new Button("Try Again");
+        tryAgainButton.setStyle("-fx-background-color: #ffb347;");
+        tryAgainButton.setOnAction(event -> {
             new TypingTest(TypingTest.this.gameUtility, primaryStage);
         });
-        bottomBtnBox.getChildren().addAll(saveScoreBtn, tryAgainBtn);
+        bottomBtnBox.getChildren().addAll(saveScoreButton, tryAgainButton);
         bottomBtnBox.setVisible(false);
 
         String originalText = "Ancient Greece is known for its significant contributions to the world, including philosophy, " +
@@ -96,12 +98,14 @@ public class TypingTest {
                 currentIndex[0]++;
             }
             a1.selectRange(0, currentIndex[0]);
+
             if (originalText.equals(typedText)) {
                 long end = System.currentTimeMillis();
                 time.set(end - time.get());
                 gridPane.getChildren().clear();
                 Label label = new Label("You have taken " + time.get() + " ms.");
-                label.setFont(Font.font(24));
+                label.setStyle("-fx-text-fill: white;");
+                label.setFont(Font.font(36));
                 label.setAlignment(Pos.CENTER);
                 gridPane.add(label, 0, 0);
                 bottomBtnBox.setVisible(true);

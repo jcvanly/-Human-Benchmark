@@ -95,7 +95,12 @@ public class ReactionTime {
         topBox.setSpacing(20);
         topBox.getChildren().addAll(backButton, saveButton);
 
+        HBox bottomBtnBox = new HBox();
+        bottomBtnBox.setSpacing(20);
+        bottomBtnBox.getChildren().addAll(saveButton);
+        bottomBtnBox.setVisible(false);
         root.setTop(topBox);
+        root.setBottom(bottomBtnBox);
         Insets insets = new Insets(10);
         root.setPadding(insets);
         root.setCenter(hBox);
@@ -115,6 +120,7 @@ public class ReactionTime {
                 final Timeline timeline = new Timeline(clickScene);
 
                 if (currentState == 1) {
+                    bottomBtnBox.setVisible(false);
                     text.set("Wait to become green");
                     hBox.setBackground(new Background(new BackgroundFill (Color.web("#AB2328"), CornerRadii.EMPTY, Insets.EMPTY)));
                     currentState = 2;
@@ -122,15 +128,17 @@ public class ReactionTime {
                     timeline.play();
                 }
 
-                else  if (currentState == 2) {
+                else if (currentState == 2) {
                     text.set("Too soon, click to try again!");
-                    hBox.setBackground(new Background (new BackgroundFill (Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
-                    timeline.stop();
+                    hBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
+                    if (timeline != null) {
+                        timeline.stop();
+                    }
                     currentState = 1;
-
                 }
 
                 else if(currentState == 3) {
+                    bottomBtnBox.setVisible(true);
                     counter.set(counter.get() + 1);
                     long end = System.currentTimeMillis();
                     score.set(end - start.get());

@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -23,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -69,6 +71,7 @@ public class VerbalMemory {
         });
         SimpleIntegerProperty lives = new SimpleIntegerProperty(3);
         SimpleIntegerProperty score = new SimpleIntegerProperty(0);
+        SimpleIntegerProperty counter = new SimpleIntegerProperty(0);
         Label livesLabel = new Label("Lives " + lives.get());
         Label scoreLabel = new Label("Score " + score.get());
         GridPane topBox = new GridPane();
@@ -148,11 +151,13 @@ public class VerbalMemory {
                             score.set(score.get() + 1);
                             int len = r.nextInt(words.size());
                             word.set(words.get(len));
-                        } else {
+                        }
+                        else {
                             lives.set(lives.get() - 1);
                             if (lives.get() == 0) {
                                 bottomBtnBox.setVisible(true);
-                            } else {
+                            }
+                            else {
                                 int len = r.nextInt(words.size());
                                 word.set(words.get(len));
                             }
@@ -177,23 +182,64 @@ public class VerbalMemory {
                     public void run() {
                         if (!previousWords.contains(word.get())) {
                             score.set(score.get() + 1);
-                            scoreLabel.setText("Score:"+score.get());
+                            scoreLabel.setText("Score: "+score.get());
+                            previousWords.add(word.get());
                             int len = r.nextInt(words.size());
-                            word.set(words.get(len));
-                        } else {
+
+                            if(counter.get()%5 == 0 && counter.get() > 0)
+                            {
+                                int index = r.nextInt(previousWords.size()-1);
+                                word.set(previousWords.get(index));
+                                wordLabel.setText(previousWords.get(index));
+
+                            }
+
+                            else
+                            {
+                                word.set(words.get(len));
+                                wordLabel.setText(word.get());
+                                System.out.println(word.get());
+                            }
+
+                        }
+
+                        else {
                             lives.set(lives.get() - 1);
                             if (lives.get() == 0) {
                                 bottomBtnBox.setVisible(true);
-                            } else {
+                            }
+                            else {
                                 int len = r.nextInt(words.size());
+                                if(counter.get()%5 == 0)
+                                {
+
+                                }
                                 word.set(words.get(len));
+                                wordLabel.setText(word.get());
                             }
                         }
+
                         livesLabel.setText("Lives:"+lives.get());
                         scoreLabel.setText("Score:"+score.get());
-                        wordLabel.setText(word.get());
+                        counter.set(counter.get() + 1);
+                        System.out.println(counter.get());
+
+//                        if(counter.get()%5 == 0)
+//                        {
+//                            int index = r.nextInt(previousWords.size()-1);
+//                            wordLabel.setText(previousWords.get(index));
+//                            System.out.println(word.get());
+//
+//                        }
+//                        else
+//                        {
+//                            System.out.println(word.get());
+//                            wordLabel.setText(word.get());
+//
+//                        }
                     }
                 });
+
             }
         });
 

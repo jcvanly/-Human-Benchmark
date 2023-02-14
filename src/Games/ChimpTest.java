@@ -50,6 +50,7 @@ public class ChimpTest{
         topBox.setHgap(20);
         topBox.addRow(0, backButton, levelLabel, livesLabel);
         GridPane centerBox = new GridPane();
+        centerBox.setPrefSize(400, 400);
         centerBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         HBox bottomBtnBox = new HBox();
@@ -101,13 +102,16 @@ public class ChimpTest{
                 button.setTextFill(Color.WHITE);
                 button.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
                 button.setStyle("-fx-border-color: #95C3E8; -fx-border-width: 2px; -fx-border-style: solid;");
+                button.setMinSize(35, 35);
+                button.setMaxSize(35, 35);
                 button.setPrefSize(35, 35);
                 button.setOnAction(event -> {
                     Platform.runLater(() -> {
                         int val = Integer.parseInt(button.getText());
                         if (val - 1 == counter.get()) {
+
                             //numberOfButtons.set(numberOfButtons.get() - 1);
-                            centerBox.getChildren().remove(button);
+                            //centerBox.getChildren().remove(button);
                             button.setVisible(false);
                             if (level.get() != 1) {
                                 //centerBox.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> node.setStyle("-fx-text-fill: white"));
