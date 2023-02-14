@@ -59,7 +59,7 @@ public class AimTrainer {
         SimpleLongProperty start = new SimpleLongProperty();
 
         Button button = new Button();
-        button.setPrefSize(50, 50);
+        button.setPrefSize(25, 25);
         button.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
         button.setOnAction(event -> {
             if (!isStarted.get()) {

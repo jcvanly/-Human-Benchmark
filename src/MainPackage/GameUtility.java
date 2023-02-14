@@ -80,12 +80,20 @@ public class GameUtility {
         saveCSV();
     }
 
+    public void updateTypingTest(long score) throws IOException {
+        this.currentUserData.setTypingTest(score);
+        saveCSV();
+    }
+
     private void saveCSV() throws IOException {
         File file = new File("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\scores.csv");
         BufferedWriter bw = null;
 
         try {
             bw=new BufferedWriter(new FileWriter(file));
+            bw.write("name, reaction_time, sequence_memory, aim_trainer, " +
+                    "chimp_test, visual_memory,typing, number_memory, " +
+                    "verbal_memory\n");
             bw.write(currentUserData.toString());
 
         }

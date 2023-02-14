@@ -100,10 +100,16 @@ public class HomeScreenUI {
         });
 
 
-        Button typingButton = new Button("Typing");
-        typingButton.setPrefSize(150, 100);
-        root.add(typingButton, 2, 1);
-        typingButton.setStyle("-fx-background-color: white;");
+        Button typingTestButton = new Button("Typing");
+        typingTestButton.setPrefSize(150, 100);
+        root.add(typingTestButton, 2, 1);
+        typingTestButton.setStyle("-fx-background-color: white;");
+        typingTestButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                new TypingTest(gameUtil , primaryStage);            }
+        });
 
 
         Button numberMemoryButton = new Button("Number Memory");

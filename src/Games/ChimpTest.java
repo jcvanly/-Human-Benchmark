@@ -43,6 +43,7 @@ public class ChimpTest{
         Label levelLabel = new Label("Level: " + level.get());
 
         GridPane topBox = new GridPane();
+
         topBox.setHgap(20);
         topBox.addRow(0, backBtn, levelLabel, livesLabel);
 
@@ -103,8 +104,8 @@ public class ChimpTest{
                     Platform.runLater(() -> {
                         int val = Integer.parseInt(button.getText());
                         if (val - 1 == counter.get()) {
-                            numberOfButtons.set(numberOfButtons.get() - 1);
-                            //centerBox.getChildren().remove(button);
+                            //numberOfButtons.set(numberOfButtons.get() - 1);
+                            centerBox.getChildren().remove(button);
                             button.setVisible(false);
                             if (level.get() != 1) {
                                 //centerBox.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> node.setStyle("-fx-text-fill: white"));
