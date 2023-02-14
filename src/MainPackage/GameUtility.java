@@ -90,6 +90,12 @@ public class GameUtility {
         saveCSV();
     }
 
+    public void updateNumberMemory(long score) throws IOException {
+        this.currentUserData.setNumberMemory(score);
+        saveCSV();
+    }
+
+
     private void saveCSV() throws IOException {
         File file = new File("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\scores.csv");
         BufferedWriter bw = null;

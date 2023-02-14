@@ -42,40 +42,41 @@ public class UserNameUI {
 
     private void getUserName() {
         Stage userNameDialogue = new Stage();
-        userNameDialogue.setWidth(250);
-        userNameDialogue.setHeight(150);
+        userNameDialogue.setWidth(400);
+        userNameDialogue.setHeight(100);
         userNameDialogue.setTitle("Login Page");
+
         GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         BackgroundFill backgroundFill = new BackgroundFill(Color.WHITE, null, null);
         Background background = new Background(backgroundFill);
         gridPane.setBackground(background);
-        Label label = new Label("Name: ");
+
+        Label label = new Label("Name:");
         label.setFont(new Font("Segoe UI", 16));
-        TextField userNameField=new TextField();
+
+        TextField userNameField = new TextField();
+        userNameField.setPrefWidth(200);
+
         Button submitButton = new Button("Play!");
         submitButton.setStyle("-fx-background-color: white; -fx-border-color: #008AD8; -fx-border-width: 3px; -fx-border-style: solid;");
 
-
-
-
-
-
         HBox hBox = new HBox();
-        hBox.setSpacing(10);
         hBox.setAlignment(Pos.CENTER);
-        hBox.getChildren().addAll(submitButton, label, userNameField);
+        hBox.setSpacing(10);
+        hBox.getChildren().addAll(label, userNameField, submitButton);
 
-        gridPane.add(label,0,1);
-        gridPane.add(userNameField,1,1);
-        gridPane.add(submitButton,1,2);
+        gridPane.add(hBox, 0, 0);
 
-        GridPane.setHalignment(submitButton, HPos.CENTER);
-        GridPane.setValignment(submitButton, VPos.CENTER);
+        GridPane.setHalignment(label, HPos.CENTER);
+        GridPane.setValignment(label, VPos.CENTER);
         GridPane.setHalignment(userNameField, HPos.CENTER);
         GridPane.setValignment(userNameField, VPos.CENTER);
+        GridPane.setHalignment(submitButton, HPos.CENTER);
+        GridPane.setValignment(submitButton, VPos.CENTER);
 
         userNameDialogue.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -87,23 +88,20 @@ public class UserNameUI {
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                checkUserName(userNameField,userNameDialogue);
+                checkUserName(userNameField, userNameDialogue);
             }
         });
 
-        userNameDialogue.setScene(new Scene(gridPane, 400, 100));
+        userNameDialogue.setScene(new Scene(gridPane));
         userNameDialogue.showAndWait();
     }
 
     private void checkUserName(TextField userNameField, Stage dialog) {
-
         userName = userNameField.getText();
 
         if(userName != null && !userName.isEmpty()) {
-
             dialog.close();
         }
-
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -111,6 +109,5 @@ public class UserNameUI {
             alert.showAndWait();
         }
     }
-
 }
 

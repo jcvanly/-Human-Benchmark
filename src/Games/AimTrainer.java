@@ -87,8 +87,8 @@ public class AimTrainer {
                 targetCounter.set(targetCounter.get() - 1);
                 targetLabel.setText("Remaining: " + targetCounter.get());
                 gridPane.getChildren().clear();
-                int row = r.nextInt(12);
-                int col = r.nextInt(12);
+                int row = r.nextInt(10);
+                int col = r.nextInt(10);
                 gridPane.add(button, col, row);
                 start.set(System.currentTimeMillis());
             }
@@ -96,7 +96,7 @@ public class AimTrainer {
                 targetCounter.set(0);
                 targetLabel.setText("Remaining: " + targetCounter.get());
                 gridPane.getChildren().clear();
-                Label label = new Label((total.get() / 15) + "ms is your average time");
+                Label label = new Label((total.get() / 15) + " ms is your average time");
                 label.setStyle("-fx-text-fill: white;");
                 label.setFont(Font.font(36));
                 label.setAlignment(Pos.CENTER);
