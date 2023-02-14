@@ -25,13 +25,16 @@ public class ChimpTest{
     public ChimpTest(GameUtility gameUtility, Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.gameUtility = gameUtility;
-        showChimpTestGameScreen();
+        showChimpTest();
     }
 
-    private void showChimpTestGameScreen() {
+    private void showChimpTest() {
+        primaryStage.setTitle("Chimp Test");
         BorderPane root = new BorderPane();
-        Button backBtn = new Button("Back");
-        backBtn.setOnAction(event -> {
+        Button backButton = new Button("Back");
+        backButton.setStyle("-fx-background-color: #ffb347;");
+
+        backButton.setOnAction(event -> {
             new HomeScreenUI(primaryStage, gameUtility);
         });
 
@@ -45,8 +48,7 @@ public class ChimpTest{
         GridPane topBox = new GridPane();
 
         topBox.setHgap(20);
-        topBox.addRow(0, backBtn, levelLabel, livesLabel);
-
+        topBox.addRow(0, backButton, levelLabel, livesLabel);
         GridPane centerBox = new GridPane();
         centerBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
 
@@ -98,7 +100,7 @@ public class ChimpTest{
                 Button button = new Button(Integer.toString(keyValues.size()));
                 button.setTextFill(Color.WHITE);
                 button.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
-                button.setStyle("-fx-border-color: #91b6d4; -fx-border-width: 2px; -fx-border-style: solid;");
+                button.setStyle("-fx-border-color: #95C3E8; -fx-border-width: 2px; -fx-border-style: solid;");
                 button.setPrefSize(35, 35);
                 button.setOnAction(event -> {
                     Platform.runLater(() -> {

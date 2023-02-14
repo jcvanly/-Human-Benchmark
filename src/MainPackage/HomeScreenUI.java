@@ -11,9 +11,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -41,17 +45,33 @@ public class HomeScreenUI {
         root.setBackground(background);
         root.setAlignment(Pos.TOP_CENTER);
 
-
-        Button reactionTimeButton = new Button("Reaction Time");
+        Button reactionTimeButton = new Button();
         reactionTimeButton.setPrefSize(150, 100);
         root.add(reactionTimeButton, 0, 0);
         reactionTimeButton.setStyle("-fx-background-color: white;");
+
+        Image image = new Image("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\OIP (1).jpeg");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(75);
+        imageView.setFitWidth(100);
+
+        Label label = new Label("Reaction Time");
+        label.setStyle("-fx-text-fill: black;");
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(imageView, label);
+        vBox.setAlignment(Pos.CENTER);
+
+        reactionTimeButton.setGraphic(vBox);
+
         reactionTimeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
                 new ReactionTime(gameUtil , primaryStage);            }
         });
+
+
 
         Button sequenceMemoryButton = new Button("Sequence Memory");
         sequenceMemoryButton.setPrefSize(150, 100);
@@ -122,7 +142,12 @@ public class HomeScreenUI {
         verbalMemoryButton.setPrefSize(150, 100);
         root.add(verbalMemoryButton, 1, 2);
         verbalMemoryButton.setStyle("-fx-background-color: white;");
+        verbalMemoryButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
 
+                new VerbalMemory(gameUtil , primaryStage);            }
+        });
 
         Button myGameButton = new Button("My Game");
         myGameButton.setPrefSize(150, 100);

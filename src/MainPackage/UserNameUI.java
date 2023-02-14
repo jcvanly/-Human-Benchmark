@@ -49,14 +49,18 @@ public class UserNameUI {
         gridPane.setHgap(10);
         gridPane.setVgap(10);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
-        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#e7ecfb"), null, null);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.WHITE, null, null);
         Background background = new Background(backgroundFill);
         gridPane.setBackground(background);
         Label label = new Label("Name: ");
         label.setFont(new Font("Segoe UI", 16));
         TextField userNameField=new TextField();
         Button submitButton = new Button("Play!");
-        submitButton.setStyle("-fx-background-color: white;");
+        submitButton.setStyle("-fx-background-color: white; -fx-border-color: #008AD8; -fx-border-width: 3px; -fx-border-style: solid;");
+
+
+
+
 
 
         HBox hBox = new HBox();

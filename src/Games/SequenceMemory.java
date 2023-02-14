@@ -38,11 +38,11 @@ public class SequenceMemory {
     public SequenceMemory(GameUtility gameUtility, Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.gameUtility = gameUtility;
-        showSequenceMemoryGameScreen();
+        showSequenceMemory();
     }
 
-    void showSequenceMemoryGameScreen() {
-        primaryStage.setTitle("Sequence Memory Game");
+    void showSequenceMemory() {
+        primaryStage.setTitle("Sequence Memory");
         BorderPane root = new BorderPane();
         SimpleStringProperty level = new SimpleStringProperty();
         GridPane gridPane = new GridPane();
@@ -61,16 +61,19 @@ public class SequenceMemory {
             }
         }
 
-        Button backBtn = new Button("Back");
-        backBtn.setOnAction(event -> new HomeScreenUI(primaryStage, gameUtility));
+        Button backButton = new Button("Back");
+        backButton.setStyle("-fx-background-color: #ffb347;");
+
+        backButton.setOnAction(event -> new HomeScreenUI(primaryStage, gameUtility));
         Label levelLabel = new Label(level.get());
         HBox topBox = new HBox();
         topBox.setSpacing(60);
-        topBox.getChildren().addAll(backBtn, levelLabel);
+        topBox.getChildren().addAll(backButton, levelLabel);
         SimpleIntegerProperty levelScore = new SimpleIntegerProperty(1);
         score = new SimpleLongProperty();
-        Button saveScoreBtn = new Button("Save Score");
-        saveScoreBtn.setOnAction(event -> {
+        Button saveButton = new Button("Save Score");
+        saveButton.setStyle("-fx-background-color: #ffb347;");
+        saveButton.setOnAction(event -> {
             try {
                 SequenceMemory.this.gameUtility.updateSequenceMemory(levelScore.get() * 100 / 14);
             } catch (IOException e) {
@@ -79,10 +82,11 @@ public class SequenceMemory {
             new SequenceMemory(SequenceMemory.this.gameUtility, primaryStage);
         });
 
-        Button tryAgainBtn = new Button("Try Again");
-        tryAgainBtn.setOnAction(event -> new SequenceMemory(SequenceMemory.this.gameUtility, primaryStage));
+        Button tryAgainButton = new Button("Try Again");
+        tryAgainButton.setStyle("-fx-background-color: #ffb347;");
+        tryAgainButton.setOnAction(event -> new SequenceMemory(SequenceMemory.this.gameUtility, primaryStage));
         HBox bottomBtnBox = new HBox();
-        bottomBtnBox.getChildren().addAll(saveScoreBtn, tryAgainBtn);
+        bottomBtnBox.getChildren().addAll(saveButton, tryAgainButton);
         bottomBtnBox.setVisible(false);
         root.setTop(topBox);
         Insets insets = new Insets(20);
@@ -215,15 +219,11 @@ public class SequenceMemory {
             {
                 HBox box = new HBox();
                 box.setPrefWidth(root.getPrefWidth());
-                Label label = new Label("Your current score :"+ score.get());
-                label.setFont(Font.font(24));
-                label.setBackground(new Background(new BackgroundFill(Color.WHITE,
-                        CornerRadii.EMPTY,
-                        Insets.EMPTY)));
-                box.setBackground(new Background(new BackgroundFill(Color.RED,
-                        CornerRadii.EMPTY,
-                        Insets.EMPTY)));
-                label.setAlignment(Pos.CENTER);
+                Label label = new Label("Your score : "+ score.get());
+                label.setFont(Font.font(36));
+                label.setStyle("-fx-text-fill: white;");
+                box.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
+                box.setAlignment(Pos.CENTER);
                 box.getChildren().add(label);
                 root.setCenter(box);
                 bottomBtnBox.setVisible(true);

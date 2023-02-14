@@ -25,17 +25,19 @@ public class TypingTest {
     public TypingTest(GameUtility gameUtility, Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.gameUtility = gameUtility;
-        showTypingGameScreen();
+        showTypingTest();
     }
 
     /**
      * Sets the screen for the Typing Game.
      */
-    private void showTypingGameScreen() {
+    private void showTypingTest() {
+        primaryStage.setTitle("Typing Test");
         BorderPane root = new BorderPane();
         root.setStyle("-fx-background-color: #008AD8;");
-        Button backBtn = new Button("Back");
-        backBtn.setOnAction(event -> {
+        Button backButton = new Button("Back");
+        backButton.setStyle("-fx-background-color: #ffb347;");
+        backButton.setOnAction(event -> {
             new HomeScreenUI(primaryStage, gameUtility);
         });
 
@@ -46,7 +48,7 @@ public class TypingTest {
 
         HBox topBox = new HBox();
         topBox.setSpacing(60);
-        topBox.getChildren().addAll(backBtn);
+        topBox.getChildren().addAll(backButton);
 
         SimpleLongProperty time = new SimpleLongProperty();
 

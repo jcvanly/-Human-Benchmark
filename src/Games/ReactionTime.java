@@ -36,11 +36,12 @@ public class ReactionTime {
     public ReactionTime(GameUtility gameUtility, Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.gameUtility = gameUtility;
-        showReactionTimerGameScreen();
+        showReactionTime();
     }
 
-    private void showReactionTimerGameScreen() {
+    private void showReactionTime() {
         primaryStage.setTitle("Reaction Time");
+
         BorderPane root = new BorderPane();
 
         HBox hBox = new HBox();
@@ -50,7 +51,8 @@ public class ReactionTime {
         SimpleIntegerProperty counter = new SimpleIntegerProperty();
         SimpleLongProperty score = new SimpleLongProperty();
 
-        text.set("Reaction Time");
+        text.set("       Reaction Time\n" +
+                "Click anywhere to start!");
         Label label = new Label();
         label.setPrefWidth(this.primaryStage.getWidth());
         label.setFont(Font.font(34));
@@ -61,6 +63,7 @@ public class ReactionTime {
         hBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         Button backButton = new Button("Back");
+        backButton.setStyle("-fx-background-color: #ffb347;");
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -69,6 +72,7 @@ public class ReactionTime {
         });
 
         Button saveButton = new Button("Save Score");
+        saveButton.setStyle("-fx-background-color: #ffb347;");
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

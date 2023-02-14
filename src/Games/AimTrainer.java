@@ -5,11 +5,15 @@ import MainPackage.HomeScreenUI;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,26 +29,30 @@ public class AimTrainer {
     public AimTrainer(GameUtility gameUtility, Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.gameUtility = gameUtility;
-        showAimTrainerGameScreen();
+        showAimTrainer();
     }
 
-    void showAimTrainerGameScreen() {
+    void showAimTrainer() {
+        primaryStage.setTitle("Aim Trainer");
         BorderPane root = new BorderPane();
         HBox bottomBtnBox = new HBox();
-        Button backBtn = new Button("Back");
+        Button backButton = new Button("Back");
+        backButton.setStyle("-fx-background-color: #ffb347;");
         SimpleLongProperty total = new SimpleLongProperty();
-        backBtn.setOnAction(event -> new HomeScreenUI(primaryStage, gameUtility));
+        backButton.setOnAction(event -> new HomeScreenUI(primaryStage, gameUtility));
         SimpleIntegerProperty targetCounter = new SimpleIntegerProperty(15);
         Label targetLabel = new Label("Remaining: " + targetCounter.get());
         HBox topBox = new HBox();
         topBox.setSpacing(60);
-        topBox.getChildren().addAll(backBtn, targetLabel);
+        topBox.getChildren().addAll(backButton, targetLabel);
         GridPane gridPane = new GridPane();
+        gridPane.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
         gridPane.setHgap(20);
         gridPane.setVgap(20);
         Random r = new Random();
-        Button saveScoreBtn = new Button("Save Score");
-        saveScoreBtn.setOnAction(event -> {
+        Button saveScoreButton = new Button("" + "Save Score");
+        saveScoreButton.setStyle("-fx-background-color: #ffb347;");
+        saveScoreButton.setOnAction(event -> {
             try {
                 AimTrainer.this.gameUtility.updateAimTrainer(total.get() / 15);
             } catch (IOException e) {
@@ -52,46 +60,61 @@ public class AimTrainer {
             }
             new AimTrainer(AimTrainer.this.gameUtility, primaryStage);
         });
-        Button tryAgainBtn = new Button("Try Again");
-        tryAgainBtn.setOnAction(event -> new AimTrainer(AimTrainer.this.gameUtility, primaryStage));
+        Button tryAgainButton = new Button("Try Again");
+        tryAgainButton.setStyle("-fx-background-color: #ffb347;");
+        tryAgainButton.setOnAction(event -> new AimTrainer(AimTrainer.this.gameUtility, primaryStage));
 
         SimpleBooleanProperty isStarted = new SimpleBooleanProperty(false);
         SimpleLongProperty start = new SimpleLongProperty();
 
         Button button = new Button();
         button.setPrefSize(25, 25);
-        button.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
+        button.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        button.setBackground(Background.EMPTY);
+        Image image = new Image("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\AimTrainerCrosshair.png");
+        ImageView imageView = new ImageView(image);
+        button.setGraphic(imageView);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        button.setGraphic(imageView);
         button.setOnAction(event -> {
             if (!isStarted.get()) {
                 isStarted.set(true);
                 start.set(System.currentTimeMillis());
-            } else if (targetCounter.get() != 0) {
+            } else if (targetCounter.get() != 1) {
                 long end = System.currentTimeMillis();
                 total.set(total.get() + (end - start.get()));
                 targetCounter.set(targetCounter.get() - 1);
-                targetLabel.setText("Remaining:" + targetCounter.get());
+                targetLabel.setText("Remaining: " + targetCounter.get());
                 gridPane.getChildren().clear();
-                int row = r.nextInt(10);
-                int col = r.nextInt(10);
+                int row = r.nextInt(12);
+                int col = r.nextInt(12);
                 gridPane.add(button, col, row);
                 start.set(System.currentTimeMillis());
-            } else {
+            }
+            else {
+                targetCounter.set(0);
+                targetLabel.setText("Remaining: " + targetCounter.get());
                 gridPane.getChildren().clear();
-                Label label = new Label((total.get() / 15) + " ms is your average time");
-                label.setFont(Font.font(24));
-                label.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+                Label label = new Label((total.get() / 15) + "ms is your average time");
+                label.setStyle("-fx-text-fill: white;");
+                label.setFont(Font.font(36));
                 label.setAlignment(Pos.CENTER);
-                gridPane.add(label, 2, 4);
+                GridPane.setHalignment(label, HPos.CENTER);
+                GridPane.setValignment(label, VPos.CENTER);
+                GridPane.setColumnSpan(label, 3);
+                gridPane.add(label, 0, 0);
                 bottomBtnBox.setVisible(true);
             }
         });
-        Label label = new Label("Click 15 targets as quick as you can!\n " + "   Click above target to start");
+        Label label = new Label("Click 15 targets as quick as you can!\n " + "   Click target above to start");
         label.setFont(Font.font(24));
+        label.setStyle("-fx-text-fill: white;");
         label.setAlignment(Pos.CENTER);
         gridPane.add(button, 2, 2);
         gridPane.add(label, 2, 4);
 
-        bottomBtnBox.getChildren().addAll(saveScoreBtn, tryAgainBtn);
+        bottomBtnBox.getChildren().addAll(saveScoreButton, tryAgainButton);
         bottomBtnBox.setVisible(false);
         root.setTop(topBox);
         Insets insets = new Insets(20);

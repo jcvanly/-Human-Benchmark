@@ -85,6 +85,11 @@ public class GameUtility {
         saveCSV();
     }
 
+    public void updateVerbalMemory(long score) throws IOException {
+        this.currentUserData.setVerbalMemory(score);
+        saveCSV();
+    }
+
     private void saveCSV() throws IOException {
         File file = new File("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\scores.csv");
         BufferedWriter bw = null;
