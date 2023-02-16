@@ -102,6 +102,8 @@ public class SequenceMemory {
         SimpleIntegerProperty num = new SimpleIntegerProperty();
         num.set(1);
         levelLabel.setText("Level:" + levelScore.get());
+        levelLabel.setStyle("-fx-text-fill: white;");
+
         initial(num, levelLabel, buttons, sequences, levelScore);
 
         for (int i = 0; i < 3; i++) {

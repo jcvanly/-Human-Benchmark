@@ -73,7 +73,11 @@ public class VerbalMemory {
         SimpleIntegerProperty score = new SimpleIntegerProperty(0);
         SimpleIntegerProperty counter = new SimpleIntegerProperty(0);
         Label livesLabel = new Label("Lives " + lives.get());
+        livesLabel.setStyle("-fx-text-fill: white;");
+
         Label scoreLabel = new Label("Score " + score.get());
+        scoreLabel.setStyle("-fx-text-fill: white;");
+
         GridPane topBox = new GridPane();
         topBox.setHgap(20);
         topBox.add(backButton, 0, 0);
@@ -163,7 +167,9 @@ public class VerbalMemory {
                             }
                         }
                         livesLabel.setText("Lives:"+lives.get());
+                        livesLabel.setStyle("-fx-text-fill: white;");
                         scoreLabel.setText("Score:"+score.get());
+                        scoreLabel.setStyle("-fx-text-fill: white;");
                         wordLabel.setText(word.get());
                     }
                 });
@@ -220,7 +226,9 @@ public class VerbalMemory {
                         }
 
                         livesLabel.setText("Lives:"+lives.get());
+                        livesLabel.setStyle("-fx-text-fill: white;");
                         scoreLabel.setText("Score:"+score.get());
+                        livesLabel.setStyle("-fx-text-fill: white;");
                         counter.set(counter.get() + 1);
                         System.out.println(counter.get());
 

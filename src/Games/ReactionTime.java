@@ -62,6 +62,9 @@ public class ReactionTime {
         label.setTextFill(Color.WHITE);
         hBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
 
+        // Set the alignment of the HBox to center
+        hBox.setAlignment(Pos.CENTER);
+
         Button backButton = new Button("Back");
         backButton.setStyle("-fx-background-color: #ffb347;");
         backButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -77,14 +80,14 @@ public class ReactionTime {
             @Override
             public void handle(ActionEvent event) {
 
-                    try {
-                        ReactionTime.this.gameUtility.updateReactionTime(score.get());
-                    }
+                try {
+                    ReactionTime.this.gameUtility.updateReactionTime(score.get());
+                }
 
-                    catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //new ReactionTime(ReactionTime.this.gameUtility, primaryStage);
+                catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                //new ReactionTime(ReactionTime.this.gameUtility, primaryStage);
 
             }
         });
@@ -92,6 +95,7 @@ public class ReactionTime {
 
 
         HBox topBox= new HBox();
+
         topBox.setSpacing(20);
         topBox.getChildren().addAll(backButton, saveButton);
 
@@ -101,8 +105,6 @@ public class ReactionTime {
         bottomBtnBox.setVisible(false);
         root.setTop(topBox);
         root.setBottom(bottomBtnBox);
-        Insets insets = new Insets(10);
-        root.setPadding(insets);
         root.setCenter(hBox);
 
         hBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -112,7 +114,7 @@ public class ReactionTime {
                 final KeyFrame clickScene = new KeyFrame(Duration.millis(5000), e ->{ hBox.setBackground(new Background(new BackgroundFill(Color.web("#6AC46A"), CornerRadii.EMPTY, Insets.EMPTY)));
 
 
-                        currentState = 3;
+                    currentState = 3;
                     text.set("Click!");
                     start.set(System.currentTimeMillis());
                 });

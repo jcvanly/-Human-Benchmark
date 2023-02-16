@@ -36,6 +36,7 @@ public class VisualMemory {
     private void showVisualMemory() {
         primaryStage.setTitle("Visual Memory");
         BorderPane root = new BorderPane();
+        SimpleIntegerProperty whiteSquaresClicked = new SimpleIntegerProperty();
         root.setStyle("-fx-background-color: #008AD8;");
         Button backButton = new Button("Back");
         backButton.setStyle("-fx-background-color: #ffb347;");
@@ -49,8 +50,9 @@ public class VisualMemory {
         SimpleIntegerProperty level = new SimpleIntegerProperty(1);
 
         Label livesLabel = new Label("Lives " + lives.get());
+        livesLabel.setTextFill(Color.WHITE);
         Label levelLabel = new Label("Level " + level.get());
-
+        levelLabel.setTextFill(Color.WHITE);
         GridPane topBox = new GridPane();
         topBox.setHgap(20);
         topBox.add(backButton, 0, 0);
@@ -61,6 +63,7 @@ public class VisualMemory {
         centerBox.setHgap(20);
         centerBox.setVgap(20);
         Button[][] buttons = new Button[5][5];
+
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 buttons[i][j] = new Button();
@@ -73,8 +76,9 @@ public class VisualMemory {
 
 
         HBox bottomBtnBox = new HBox();
-        Button saveScoreBtn = new Button("Save Score");
-        saveScoreBtn.setOnAction(new EventHandler<ActionEvent>() {
+        Button saveScoreButton = new Button("Save Score");
+        saveScoreButton.setStyle("-fx-background-color: #ffb347;");
+        saveScoreButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -86,15 +90,15 @@ public class VisualMemory {
                         primaryStage);
             }
         });
-        Button tryAgainBtn = new Button("Try Again");
-
-        tryAgainBtn.setOnAction(new EventHandler<ActionEvent>() {
+        Button tryAgainButton = new Button("Try Again");
+        tryAgainButton.setStyle("-fx-background-color: #ffb347;");
+        tryAgainButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 new VisualMemory(VisualMemory.this.gameUtility, primaryStage);
             }
         });
-        bottomBtnBox.getChildren().addAll(saveScoreBtn, tryAgainBtn);
+        bottomBtnBox.getChildren().addAll(saveScoreButton, tryAgainButton);
         bottomBtnBox.setVisible(false);
 
         root.setTop(topBox);
@@ -126,7 +130,7 @@ public class VisualMemory {
                                 public void run() {
                                     buttons[row.get()][col.get()].setBackground
                                             (new Background(new BackgroundFill
-                                                    (Color.RED,
+                                                    (Color.web("#AB2328"),
                                                             CornerRadii.EMPTY,
                                                             Insets.EMPTY)));
 
@@ -140,7 +144,7 @@ public class VisualMemory {
                                 public void run() {
                                     buttons[row.get()][col.get()].setBackground
                                             (new Background(new BackgroundFill
-                                                    (Color.GREEN,
+                                                    (Color.web("#6AC46A"),
                                                             CornerRadii.EMPTY,
                                                             Insets.EMPTY)));
 
@@ -162,9 +166,8 @@ public class VisualMemory {
                             root.setCenter(levelLabel);
                             bottomBtnBox.setVisible(true);
                         } else {
-                            System.out.println(correctAns.get() +":"+
-                                    numberOfSequences.get());
                             if (correctAns.get() == numberOfSequences.get()) {
+                                correctAns.set(0);
                                 level.set(level.get() + 1);
                                 numberOfSequences.set
                                         (numberOfSequences.get() + 1);
@@ -183,7 +186,7 @@ public class VisualMemory {
                                                         setBackground(new
                                                                 Background
                                                                 (new BackgroundFill
-                                                                        (Color.BLUE,
+                                                                        (Color.web("#2573c1"),
                                                                                 CornerRadii.EMPTY,
                                                                                 Insets.EMPTY)));
                                             }
@@ -209,40 +212,45 @@ public class VisualMemory {
     }
 
     private void playSequence(Button[][] buttons, SimpleIntegerProperty numberOfSequences,
-                              List<KeyValue> selectedChoices,Label level,
+                              List<KeyValue> selectedChoices, Label level,
                               SimpleIntegerProperty levelScore) {
+
         final Timeline timeline = new Timeline();
         final KeyFrame kf = new KeyFrame(Duration.millis(0), e -> {
-            level.setText("Level:"+levelScore.get());
+            level.setText("Level: "+levelScore.get());
         });
         timeline.getKeyFrames().add(kf);
+
+        int delay = 1000;
 
         for (int i = 0; i < numberOfSequences.get(); i++) {
             Random r = new Random();
             SimpleIntegerProperty row = new SimpleIntegerProperty();
-            SimpleIntegerProperty col = new SimpleIntegerProperty(r.nextInt
-                    (4));
+            SimpleIntegerProperty col = new SimpleIntegerProperty(r.nextInt(4));
             KeyValue keyValue = new KeyValue();
             keyValue.row = r.nextInt(4);
             keyValue.col = r.nextInt(4);
             selectedChoices.add(keyValue);
         }
-        int delay = 1000;
-        for (KeyValue keyValue : selectedChoices) {
-            final KeyFrame kf1 = new KeyFrame(Duration.millis(delay), e -> {
-                buttons[keyValue.row][keyValue.col].setBackground
-                        (new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-            });
-            timeline.getKeyFrames().add(kf1);
 
-            delay += 1000;
-            final KeyFrame kf2 = new KeyFrame(Duration.millis(delay), e -> {
-                buttons[keyValue.row][keyValue.col].setBackground
-                        (new Background(new BackgroundFill(Color.web("#2573c1"), CornerRadii.EMPTY, Insets.EMPTY)));
-            });
-            timeline.getKeyFrames().add(kf2);
-            delay += 1000;
-        }
+        // Create a single keyframe that sets the background color of all buttons in the list to white
+        final KeyFrame whiteKF = new KeyFrame(Duration.millis(delay), e -> {
+            for (KeyValue keyValue : selectedChoices) {
+                buttons[keyValue.row][keyValue.col].setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        });
+        timeline.getKeyFrames().add(whiteKF);
+        delay += 1000;
+
+        // Create a keyframe that sets the background color of all buttons in the list to the original color
+        final KeyFrame originalKF = new KeyFrame(Duration.millis(delay), e -> {
+            for (KeyValue keyValue : selectedChoices) {
+                buttons[keyValue.row][keyValue.col].setBackground(new Background(new BackgroundFill(Color.web("#2573c1"), CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        });
+        timeline.getKeyFrames().add(originalKF);
+        delay += 1000;
+
         Platform.runLater(timeline::play);
     }
 }

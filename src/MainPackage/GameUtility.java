@@ -95,6 +95,10 @@ public class GameUtility {
         saveCSV();
     }
 
+    public void updateMyGame(long score) throws IOException {
+        this.currentUserData.setMyGame(score);
+        saveCSV();
+    }
 
     private void saveCSV() throws IOException {
         File file = new File("C:\\Users\\jackv\\IdeaProjects\\Human-Benchmark\\resources\\scores.csv");
@@ -104,7 +108,7 @@ public class GameUtility {
             bw=new BufferedWriter(new FileWriter(file));
             bw.write("name, reaction_time, sequence_memory, aim_trainer, " +
                     "chimp_test, visual_memory,typing, number_memory, " +
-                    "verbal_memory\n");
+                    "verbal_memory, my_game\n");
             bw.write(currentUserData.toString());
 
         }

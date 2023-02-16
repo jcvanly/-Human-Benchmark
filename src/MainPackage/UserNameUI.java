@@ -36,8 +36,8 @@ public class UserNameUI {
     public UserNameUI(Stage primaryStage) throws FileNotFoundException {
         this.parentStage = primaryStage;
         getUserName();
-        GameUtility controller = new GameUtility(userName);
-        new HomeScreenUI(primaryStage, controller);
+        GameUtility gameUtility = new GameUtility(userName);
+        new HomeScreenUI(primaryStage, gameUtility);
     }
 
     private void getUserName() {

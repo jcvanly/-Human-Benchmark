@@ -43,10 +43,13 @@ public class ChimpTest{
         SimpleIntegerProperty numberOfButtons = new SimpleIntegerProperty(4);
 
         Label livesLabel = new Label("Lives: " + lives.get());
+        livesLabel.setTextFill(Color.WHITE);
+
         Label levelLabel = new Label("Level: " + level.get());
+        levelLabel.setTextFill(Color.WHITE);
 
         GridPane topBox = new GridPane();
-
+        topBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), null, null)));
         topBox.setHgap(20);
         topBox.addRow(0, backButton, levelLabel, livesLabel);
         GridPane centerBox = new GridPane();
@@ -54,12 +57,14 @@ public class ChimpTest{
         centerBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         HBox bottomBtnBox = new HBox();
+        bottomBtnBox.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), null, null)));
         List<KeyValue> keyValues = new ArrayList<>();
         addButtons(centerBox, bottomBtnBox, root, lives, level, livesLabel,
                 levelLabel, numberOfButtons, keyValues);
 
-        Button saveScoreBtn = new Button("Save Score");
-        saveScoreBtn.setOnAction(event -> {
+        Button saveScoreButton = new Button("Save Score");
+        saveScoreButton.setStyle("-fx-background-color: #ffb347;");
+        saveScoreButton.setOnAction(event -> {
             try {
                 gameUtility.updateChimpTest(level.get());
             } catch (IOException e) {
@@ -68,17 +73,16 @@ public class ChimpTest{
             new ChimpTest(ChimpTest.this.gameUtility, primaryStage);
         });
 
-        Button tryAgainBtn = new Button("Try Again");
-        tryAgainBtn.setOnAction(event -> {
+        Button tryAgainButton = new Button("Try Again");
+        tryAgainButton.setStyle("-fx-background-color: #ffb347;");
+        tryAgainButton.setOnAction(event -> {
             new ChimpTest(ChimpTest.this.gameUtility, primaryStage);
         });
 
-        bottomBtnBox.getChildren().addAll(saveScoreBtn, tryAgainBtn);
+        bottomBtnBox.getChildren().addAll(saveScoreButton, tryAgainButton);
         bottomBtnBox.setVisible(false);
 
         root.setTop(topBox);
-        root.setPadding(new Insets(20));
-        centerBox.setPadding(new Insets(20));
         root.setCenter(centerBox);
         root.setBottom(bottomBtnBox);
         primaryStage.setScene(new Scene(root, 600, 400));
@@ -120,16 +124,16 @@ public class ChimpTest{
                             numberOfButtons.set(keyValues.size());
                         } else {
                             lives.set(lives.get() - 1);
-                            livesLabel.setText("Lives:" + lives.get());
+                            livesLabel.setText("Lives: " + lives.get());
                             level.set(level.get() + 1);
-                            levelLabel.setText("Level:" + level.get());
+                            levelLabel.setText("Level: " + level.get());
                         }
                         if (lives.get() == 0) {
                             root.setCenter(livesLabel);
                             bottomBtnBox.setVisible(true);
                         } else if (centerBox.getChildren().isEmpty()) {
                             level.set(level.get() + 1);
-                            levelLabel.setText("Level:" + level.get());
+                            levelLabel.setText("Level: " + level.get());
                             numberOfButtons.set(numberOfButtons.get() + 1);
                             keyValues.clear();
                             addButtons(centerBox, bottomBtnBox, root, lives, level, livesLabel, levelLabel, numberOfButtons, keyValues);

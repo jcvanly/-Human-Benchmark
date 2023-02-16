@@ -26,15 +26,16 @@ public class MyGame {
     private final GameUtility gameUtility;
     private final Stage primaryStage;
     private int counter = 0;
+    private long duration;
 
     public MyGame(GameUtility gameUtility, Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.gameUtility = gameUtility;
-        showNumberMemoryGameScreen();
+        showMyGame();
     }
 
-    private void showNumberMemoryGameScreen() {
-        primaryStage.setTitle("Number Memory");
+    private void showMyGame() {
+        primaryStage.setTitle("My Game");
         BorderPane root = new BorderPane();
         Button backButton = new Button("Back");
         backButton.setStyle("-fx-background-color: #ffb347;");
@@ -58,7 +59,7 @@ public class MyGame {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    gameUtility.updateNumberMemory(level.get());
+                    gameUtility.updateMyGame(duration/5);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -106,7 +107,7 @@ public class MyGame {
         int l = level.get();
         long startTime = System.currentTimeMillis();
         int num1 = r.nextInt(10) + 1;
-        int num2 = r.nextInt(1) + 1;
+        int num2 = r.nextInt(10) + 1;
         int answer = num1 * num2;
 
         Label label = new Label(num1 + " x " + num2 + " = ");
@@ -128,9 +129,9 @@ public class MyGame {
             @Override
             public void handle(ActionEvent event) {
                 if (counter == 4) {
-                    long duration = System.currentTimeMillis() - startTime;
+                    duration = System.currentTimeMillis() - startTime;
                     gridPane.getChildren().clear();
-                    Label gameOverLabel = new Label("Game Over" + (duration/5));
+                    Label gameOverLabel = new Label("    Game Over!\n" +"Average time: "+ (duration/5));
                     gameOverLabel.setFont(Font.font(42));
                     gameOverLabel.setTextFill(Color.WHITE);
                     gameOverLabel.setAlignment(Pos.CENTER);

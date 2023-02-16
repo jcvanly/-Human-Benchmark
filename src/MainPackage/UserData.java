@@ -49,12 +49,16 @@ public class UserData {
         this.verbalMemory = verbalMemory;
     }
 
+    public void setMyGame(long verbalMemory) {
+        this.myGame = verbalMemory;
+    }
+
     @Override
     public String toString() {
-        return "Name: " + name + "\nReaction Time: " + reactionTime + "\nSequence Memory: " + sequenceMemory
-                + "\nAim Trainer: " + aimTrainer + "\nChimp Test: " + chimpTest + "\nVisual Memory: " + visualMemory
-                + "\nTyping Test: " + typingTest + "\nNumber Memory: " + numberMemory + "\nVerbal Memory: " + verbalMemory
-                + "\nMy Game: " + myGame;
+        return name + "," + reactionTime + " ms ," + sequenceMemory
+                + " levels ," + aimTrainer + " ms ," + chimpTest + " levels ," + visualMemory
+                + " levels ," + typingTest + " ms ," + numberMemory + " levels ," + verbalMemory
+                + " ms ," + myGame;
     }
 
 }
