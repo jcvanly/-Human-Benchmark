@@ -1,5 +1,13 @@
 /** Jack Vanlyssel
  *
+ * This is a Java class that creates the Reaction Time game.
+ * The game consists of a screen that changes colors, and the
+ * player must click on the screen when it changes to green.
+ * The class has a constructor that takes a GameUtility object
+ * and a Stage object, and it initializes the game by calling the
+ * showReactionTime() method. The showReactionTime() method sets up
+ * the UI of the game by creating a BorderPane and adding a Label
+ * and some buttons to it.
  */
 
 package Games;

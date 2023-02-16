@@ -1,4 +1,11 @@
-
+/** Jack Vanlyssel
+ *
+ * This code implements Sequence Memory. The game consists of a grid of buttons,
+ * and the player must remember the sequence of buttons that light up in a specific
+ * order, and then repeat the sequence in the same order. The game has multiple levels,
+ * and the difficulty increases as the levels progress. Most of the logic for this game
+ * is housed in the button event handlers.
+ */
 package Games;
 
 import MainPackage.KeyValue;

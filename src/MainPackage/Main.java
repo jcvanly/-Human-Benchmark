@@ -1,5 +1,7 @@
 /** Jack Vanlyssel
  *
+ * Main only serves to launch UserNameUI which launches
+ * the rest of the program.
  */
 
 package MainPackage;

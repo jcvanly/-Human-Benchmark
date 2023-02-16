@@ -1,3 +1,15 @@
+/** Jack Vanlyssel
+ *
+ * This code implements the ninth test which is a math game.
+ * The game asks the user to solve multiplication problems
+ * and advances the level with each correct answer. It then
+ * reports how quickly the user was able to solve all the
+ * problems. The class uses JavaFX to create a GUI with a
+ * text field and a submit button for the user to input
+ * their answer, and displays the time taken at the end
+ * of the game.
+ */
+
 package Games;
 
 import MainPackage.GameUtility;
@@ -18,7 +30,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.Random;
 

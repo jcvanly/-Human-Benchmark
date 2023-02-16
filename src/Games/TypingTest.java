@@ -1,5 +1,16 @@
-package Games;
+/** Jack Vanlyssel
+ *
+ * This code implements the typing test mini-game.
+ * The showTypingTest() method sets up the user interface
+ * for the game, which consists of a text area with some
+ * predefined text and another text area where the user
+ * can type. The program checks if the user types the
+ * text correctly, and if so, it calculates the time
+ * taken to complete the task and displays it to the
+ * user. The user can save their score or try again.
+ */
 
+package Games;
 
 import MainPackage.GameUtility;
 import MainPackage.HomeScreenUI;
@@ -14,7 +25,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 

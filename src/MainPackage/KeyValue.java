@@ -1,3 +1,10 @@
+/** Jack Vanlyssel
+ *
+ * This is a simple Java class called KeyValue. It has two integer fields:
+ * row and col, which represent a key-value pair. It is used in visual
+ * memory and sequence memory.
+ */
+
 package MainPackage;
 
 import java.util.Objects;

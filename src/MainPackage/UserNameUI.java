@@ -1,5 +1,11 @@
 /** Jack Vanlyssel
- *
+ * This code defines a user interface for prompting the user to enter
+ * their name before starting the game. The user interface consists of
+ * a simple dialog box with a label, text field, and a button. When
+ * the user clicks the "Play!" button, the code checks if the user
+ * has entered a name. If the user has not entered a name, an error
+ * message is displayed using an alert. If the user has entered a name,
+ * the dialog box is closed and the name is stored for future use in the game.
  */
 
 package MainPackage;
@@ -40,6 +46,10 @@ public class UserNameUI {
         new HomeScreenUI(primaryStage, gameUtility);
     }
 
+    /**
+     * This code shows a dialog box prompting the user to enter a user name, and handles the user input.
+     * The submitButton is set up with an event handler that calls the checkUserName() method to validate the input.
+     */
     private void getUserName() {
         Stage userNameDialogue = new Stage();
         userNameDialogue.setWidth(400);

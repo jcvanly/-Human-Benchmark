@@ -1,3 +1,21 @@
+/** Jack Vanlyssel
+ *
+ * This is a Java class that implements the Chimp Test game.
+ * The class contains a constructor that initializes the game
+ * with a given instance of GameUtility and Stage objects, and
+ * a private method showChimpTest() that displays the game window.
+ * The top section contains a GridPane with a Back button,
+ * Level label, and Lives label. The center section contains
+ * a GridPane with a variable number of buttons that the player
+ * clicks on in order. The bottom section contains an HBox that
+ * contains Save Score and Try Again buttons. The addButtons()
+ * method adds the buttons to the center section of the game window.
+ * The game ends when the player runs out of lives. The challenge of
+ * This game is that the buttons will all turn white after the first
+ * level and the user must remember their order. I could not figure
+ * out how to get buttons to stay in one place after being deleted.
+ */
+
 package Games;
 
 import MainPackage.KeyValue;
@@ -12,7 +30,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,12 @@
-/**
+/** Jack Vanlyssel
  *
+ * This code defines a JavaFX user interface for the home screen.
+ * The UI consists of a grid of buttons that correspond to different
+ * tests, each with an icon and a label. The code sets up event handlers
+ * for each button, which create and display a new instance of the corresponding
+ * game when the button is clicked. The UI is created using a GridPane layout.
+ * The UI is displayed in a new window and the primary stage of the UI is passed
+ * in as a parameter to the constructor of this class.
  */
 
 package MainPackage;

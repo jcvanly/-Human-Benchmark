@@ -1,5 +1,14 @@
+/** Jack Vanlyssel
+ *
+ * This is a Java class that implements the Verbal Memory game.
+ * The game displays a word and the user has to decide whether they
+ * have seen the word before or it's a new word. The game is scored
+ * based on the user's correct responses, and the user has a limited
+ * number of lives. The class uses JavaFX to create the game's GUI,
+ * and it reads words from a dictionary file. The code handles user input,
+ * updates the score, and ends the game when the user runs out of lives.
+ */
 package Games;
-
 
 import MainPackage.GameUtility;
 import MainPackage.HomeScreenUI;
@@ -12,7 +21,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -24,7 +32,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

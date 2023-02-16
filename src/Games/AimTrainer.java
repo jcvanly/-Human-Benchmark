@@ -1,3 +1,18 @@
+/** Jack Vanlyssel
+ *
+ * This code implements the Aim Trainer game.
+ * The class contains a constructor that initializes the game,
+ * and a showAimTrainer() method that creates the UI and sets up the game.
+ * The UI consists of a BorderPane with a GridPane in the center that contains
+ * a button, a label, and a message that tells the user how to play the game.
+ * The aim of the game is to click on 15 targets as quickly as possible. Once
+ * the game starts, the button is placed randomly in the GridPane and the user
+ * must click it. The timer starts as soon as the first click is made. The game
+ * ends after 15 clicks, and the user's average time is displayed on the screen.
+ * The UI also contains a "Try Again" button and a "Save Score" button that allows
+ * the user to play the game again or save their score, respectively.
+ */
+
 package Games;
 
 import MainPackage.GameUtility;

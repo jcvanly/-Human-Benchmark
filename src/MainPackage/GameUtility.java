@@ -1,11 +1,20 @@
 /** Jack Vanlyssel
  *
+ * This code defines a GameUtility class that helps track
+ * scores and user data for various games. The class loads
+ * a CSV file containing user data and provides methods for
+ * updating the scores for each game. It also provides a method
+ * for saving the updated data to the CSV file. The GameUtility
+ * constructor takes a userName parameter and loads the corresponding
+ * user data from the CSV file, or creates a new UserData object if
+ * the user does not exist in the CSV file. The GameUtility class is
+ * used to update the scores for each game and save the updated scores
+ * to the CSV file.
  */
 
 package MainPackage;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

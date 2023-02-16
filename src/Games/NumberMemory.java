@@ -1,5 +1,16 @@
 package Games;
 
+/** Jack Vanlyssel
+ *
+ *  This code implements a Number Memory game, where the
+ *   player needs to memorize a randomly generated number
+ *   and then input it after a certain amount of time has
+ *   elapsed. The game has multiple levels, with the length
+ *   of the generated number increasing with each level. The
+ *   code also includes options to save the player's score
+ *   and restart the game.
+ */
+
 import MainPackage.GameUtility;
 import MainPackage.HomeScreenUI;
 import javafx.animation.KeyFrame;

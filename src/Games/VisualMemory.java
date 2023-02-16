@@ -1,3 +1,15 @@
+/** Jack Vanlyssel
+ *
+ * This code implements the Visual Memory game. The game
+ * involves displaying a sequence of squares, and then
+ * the user must click on the same sequence of squares
+ * in the correct order. The game has multiple levels,
+ * and the number of squares to remember increases with
+ * each level. The code uses a timeline to animate the
+ * sequence of squares and updates the UI to reflect the
+ * current state of the game.
+ */
+
 package Games;
 
 import MainPackage.KeyValue;
@@ -17,7 +29,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

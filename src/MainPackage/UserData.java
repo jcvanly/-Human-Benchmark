@@ -1,5 +1,12 @@
 /** Jack Vanlyssel
- *
+ * This is a simple Java class that represents user data, which
+ * includes various scores in different games. The class contains
+ * instance variables for the user's name and scores in various games,
+ * as well as getter and setter methods for these variables. There is
+ * also a toString() method that formats the user data as a comma-separated
+ * string, which can be used for saving to a CSV file or displaying in a user
+ * interface. Overall, this class provides a basic data model for tracking
+ * user scores and information.
  */
 
 package MainPackage;
@@ -55,10 +62,10 @@ public class UserData {
 
     @Override
     public String toString() {
-        return name + "," + reactionTime + " ms ," + sequenceMemory
-                + " levels ," + aimTrainer + " ms ," + chimpTest + " levels ," + visualMemory
-                + " levels ," + typingTest + " ms ," + numberMemory + " levels ," + verbalMemory
-                + " ms ," + myGame;
+        return name + " , " + reactionTime + " ms , " + sequenceMemory
+                + " levels , " + aimTrainer + " ms , " + chimpTest + " levels , " + visualMemory
+                + " levels , " + typingTest + " ms , " + numberMemory + " levels , " + verbalMemory
+                + " ms , " + myGame + " ms";
     }
 
 }
