@@ -146,6 +146,7 @@ public class ChimpTest{
                             levelLabel.setText("Level: " + level.get());
                         }
                         if (lives.get() == 0) {
+                            root.setBackground(new Background(new BackgroundFill(Color.web("#008AD8"), null, null)));
                             root.setCenter(livesLabel);
                             bottomBtnBox.setVisible(true);
                         } else if (centerBox.getChildren().isEmpty()) {
